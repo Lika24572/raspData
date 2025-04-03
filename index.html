@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Электронные Часы с Датой</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column; /* Располагаем элементы сверху вниз */
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: monospace; /* Или другой моноширинный шрифт */
+    }
+
+    .clock-container {
+      background-color: #000;
+      color: rgb(255, 0, 191);
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 4em;
+      letter-spacing: 5px;
+      text-shadow: 0 0 10px rgb(195, 0, 255);
+      box-shadow: 0 0 20px rgba(172, 9, 104, 0.5);
+      margin-bottom: 20px; /* Отступ между часами и датой */
+    }
+
+    .date-container {
+      color: #050000; /* Цвет для даты */
+      font-size: 1.5em;
+      letter-spacing: 2px;
+      text-shadow: 0 0 5px #000; /* Легкая тень для лучшей читаемости */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="clock-container">
+    <span id="time"></span>
+  </div>
+
+  <div class="date-container">
+    <span id="date"></span>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      let seconds = now.getSeconds();
+
+      // Добавляем ведущий ноль, если число меньше 10
+      hours = hours < 10 ? "0" + hours : hours;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      const timeString = hours + ":" + minutes + ":" + seconds;
+      document.getElementById("time").innerText = timeString;
+
+      // Форматирование даты
+      const day = now.getDate();
+      const month = now.getMonth() + 1; // Месяцы начинаются с 0
+      const year = now.getFullYear();
+      const dateString = `${day < 10 ? '0' + day : day}.${month < 10 ? '0' + month : month}.${year}`;  // форматирование с ведущими нулями
+      document.getElementById("date").innerText = dateString;
+    }
+
+    // Обновляем часы каждую секунду
+    setInterval(updateClock, 1000);
+
+    // Запускаем часы сразу при загрузке страницы
+    updateClock();
+  </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Расписание Занятий</title>
+<style>
+  body {
+    font-family: sans-serif;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content a:hover {background-color: #ddd;}
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .schedule-table th, .schedule-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .schedule-table th {
+    background-color: #f2f2f2;
+  }
+</style>
+</head>
+<body>
+
+<h1>Расписание Занятий</h1>
+
+<div class="dropdown">
+  <span>Понедельник</span>
+  <div class="dropdown-content">
+    <a href="monday.html?group=group1">ВЕБ1</a>
+    <a href="monday.html?group=group2">ВЕБ2</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <span>Вторник</span>
+  <div class="dropdown-content">
+    <a href="tue.html?group=group1">ВЕБ1</a>
+    <a href="tue.html?group=group2">ВЕБ2</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <span>Среда</span>
+  <div class="dropdown-content">
+    <a href="3.html?group=group1">ВЕБ1</a>
+    <a href="3.html?group=group2">ВЕБ2</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <span>Четверг</span>
+  <div class="dropdown-content">
+    <a href="4.html?group=group1">ВЕБ1</a>
+    <a href="4.html?group=group2">ВЕБ2</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <span>Пятница</span>
+  <div class="dropdown-content">
+    <a href="5.html?group=group1">ВЕБ1</a>
+    <a href="5.html?group=group2">ВЕБ2</a>
+  </div>
+</div>
+
+<script>
+  // Небольшой JavaScript для предотвращения перехода по ссылке, если вы просто хотите увидеть выпадающий список
+  document.querySelectorAll('.dropdown > span').forEach(span => {
+    span.addEventListener('click', (event) => {
+      event.preventDefault(); // Отменяем переход по умолчанию, чтобы выпадающий список оставался открытым
+    });
+  });
+</script>
+
+</body>
+</html>
